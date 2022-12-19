@@ -53,18 +53,20 @@ class Flower {
     this.image = new Image();
     this.image.src = 'flowers.png';
     this.frameSize = 100;
+    this.frameX = Math.floor(Math.random() * 3);
+    this.frameY = Math.floor(Math.random() * 3);
   }
   grow() {
     if (this.size < this.maxFlowerSize) {
       this.size += 0.3;
       ctx.drawImage(
         this.image,
-        0,
-        0,
+        this.frameSize * this.frameX,
+        this.frameSize * this.frameY,
         this.frameSize,
         this.frameSize,
-        this.x,
-        this.y,
+        this.x - this.size / 2,
+        this.y - this.size / 2,
         this.size,
         this.size
       );
