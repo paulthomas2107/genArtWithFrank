@@ -5,6 +5,8 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 let drawing = false;
+ctx.lineWidth = 1;
+//ctx.globalCompositeOperation = 'destination-over';
 
 class Root {
   constructor(x, y) {
@@ -58,7 +60,7 @@ class Flower {
     this.frameY = Math.floor(Math.random() * 3);
     this.size > 11.5 ? (this.willFlower = true) : (this.willFlower = false);
     this.angle = 0;
-    this.va = Math.random() * 1 - 0.5;
+    this.va = Math.random() * 0.05 - 0.025;
   }
   grow() {
     if (this.size < this.maxFlowerSize && this.willFlower) {
@@ -93,8 +95,12 @@ window.addEventListener('mousemove', function (e) {
   }
 });
 
-window.addEventListener('mousedown', function () {
+window.addEventListener('mousedown', function (e) {
   drawing = true;
+  for (let i = 0; i < 30; i++) {
+    const root = new Root(e.x, e.y);
+    root.update();
+  }
 });
 
 window.addEventListener('mouseup', function () {
